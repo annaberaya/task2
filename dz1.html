@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ДЗ1</title>
+<style>
+   body {
+      background-image: url('passport-page-background.jpg');
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    .data-block {
+      position: absolute;
+      padding: 10px;
+    }
+
+    .data-block:first-of-type {
+      top: 380px;
+      left: 230px;
+    }
+
+    .data-block:last-of-type {
+      top: 490px;
+      left: 300px;
+    }
+
+  button {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ff66b2;
+    border: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #ff3385;
+  }
+</style>
+</head>
+<body>
+   <img src="your-photo.jpg" style="width: 140px; height: 180px; position: absolute; top: 435px; left: 25px">
+  <div class="data-block" id="page2">
+    <p>Иванов</p>
+    <p>Иван</p>
+    <p>Иванович</p>
+  </div>
+
+  <div class="data-block" id="page3">
+    <p>01.01.1990</p>
+    <p>Москва</p>
+  </div>
+
+  <button onclick="translateData()">Перевести</button>
+  <button onclick="history.back()">Вернуться назад</button>
+</body>
+  <script>
+    let isTranslated = false;
+
+    function translateData() {
+      const page2 = document.getElementById('page2');
+      const page3 = document.getElementById('page3');
+
+      if (!isTranslated) {
+        page2.innerHTML = `
+          <p>Ivanov</p>
+          <p>Ivan</p>
+          <p>Ivanovich</p>
+          <!-- Add other data as needed -->
+        `;
+
+        page3.innerHTML = `
+          <p>01/01/1990</p>
+          <p>Moscow</p>
+        `;
+      } else {
+        page2.innerHTML = `
+          <p>Иванов</p>
+          <p>Иван</p>
+          <p>Иванович</p>
+        `;
+
+        page3.innerHTML = `
+          <p>01.01.1990</p>
+          <p>Москва</p>
+        `;
+      }
+
+      isTranslated = !isTranslated;
+    }
+  </script>
+</html>

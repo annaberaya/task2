@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  header {
+    background-color: pink;
+    color: #ffffff;
+    text-align: center;
+    padding: 1em 0;
+  }
+  main {
+    padding: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  button {
+    background-color: pink;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #FC46AA;
+  }
+  p {
+    margin: 0 0 10px 0;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Определение возможности заполнения ёмкостей</h1>
+</header>
+
+<main>
+  <p>Имеются две ёмкости: кубическая с ребром A и цилиндрическая с высотой H и радиусом основания R. Определить, можно ли заполнить жидкостью объёма M первую ёмкость, вторую, обе. Введите значения ниже и нажмите "Рассчитать", чтобы узнать ответ.</p>
+
+  <label for="A">Ребро куба A:</label>
+  <input type="number" min="0" id="A" required>
+
+  <label for="H">Высота цилиндра H:</label>
+  <input type="number" min="0" id="H" required>
+
+  <label for="R">Радиус основания цилиндра R:</label>
+  <input type="number" min="0" id="R" required>
+
+  <label for="M">Объем жидкости M:</label>
+  <input type="number" min="0" id="M" required>
+
+  <button onclick="calculate()">Рассчитать</button>
+  <button onclick="history.back()">Вернуться назад</button>
+
+  <p id="cubeAnswer"></p>
+  <p id="cylinderAnswer"></p>
+  <p id="bothAnswer"></p>
+</main>
+</body>
+<script>
+function calculate() {
+  // Получаем значения из полей ввода
+  var A = document.getElementById("A").value;
+  var H = document.getElementById("H").value;
+  var R = document.getElementById("R").value;
+  var M = document.getElementById("M").value;
+
+  // Переводим значения в числа
+  A = parseFloat(A);
+  H = parseFloat(H);
+  R = parseFloat(R);
+  M = parseFloat(M);
+
+  // Рассчитываем объем куба и цилиндра
+  var cubeVolume = Math.pow(A, 3);
+  var cylinderVolume = Math.PI * Math.pow(R, 2) * H;
+
+  // Проверяем, можно ли заполнить ёмкости
+  var cubeAnswer = M <= cubeVolume ? "Можно" : "Нельзя";
+  var cylinderAnswer = M <= cylinderVolume ? "Можно" : "Нельзя";
+  var bothAnswer = M <= (cubeVolume + cylinderVolume) ? "Можно" : "Нельзя";
+
+  // Выводим ответы на страницу
+  document.getElementById("cubeAnswer").innerText = "Кубическая ёмкость: " + cubeAnswer;
+  document.getElementById("cylinderAnswer").innerText = "Цилиндрическая ёмкость: " + cylinderAnswer;
+  document.getElementById("bothAnswer").innerText = "Обе ёмкости: " + bothAnswer;
+}
+</script>
+
+</html>
